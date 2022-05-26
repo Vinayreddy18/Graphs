@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+#include <iostream>
+
+using namespace std;
+ 
+  void bfs(int s,vector<int> g[],bool vis[])
+    {
+      queue<int>q;
+      q.push(s);
+      vis[s]=true;
+      while(!q.empty())
+      {
+          int curr=q.front();
+          q.pop();
+          cout<<curr<<" ";
+          for(int i=0;i<g[curr].size();i++)
+          {
+              if(vis[g[curr][i]]==false)
+              {
+                  q.push(g[curr][i]);
+                  vis[g[curr][i]]=true;
+              }
+          }
+      }
+    }
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n,e;
+        cin>>n>>e;
+        vector<int>g[n];
+        bool vis[n]={false};
+        for(int i=0;i<e;i++)
+        {
+            int u,v;
+            cin>>u>>v;
+            g[u].push_back(v);
+   
+        }
+        bfs(0,g,vis);
+        cout<<endl;
+    }
+    return 0;
+}
